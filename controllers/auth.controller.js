@@ -53,9 +53,9 @@ export const login = async (req, res) => {
         }, process.env.JWT_SECRET, { expiresIn: 1000 * 60 * 60 * 24 * 7 });
 
         res.cookie("token", token, {
-            secure: true,
-        sameSite: 'None',
-        httpOnly: true,
+           // secure: true,
+            //sameSite: 'None',
+            httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24 * 7
         }).status(200).json({
             token,
@@ -65,6 +65,7 @@ export const login = async (req, res) => {
         });
 
     } catch (err) {
+        console.log(err)
         res.status(500).json({
             message: err.message,
             error: true,
